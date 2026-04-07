@@ -1,0 +1,76 @@
+<!-- ========================= -->
+<!-- IMPROVED MODERN UI VERSION -->
+<!-- ========================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Noto+Sans+Malayalam&display=swap" rel="stylesheet">
+  <title>Madrasa Website</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <h1>Thanveerul Islam Rahmaniyya Madrasa</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Classes</a>
+      <a href="#">Students</a>
+      <a href="#">Results</a>
+      <a href="#">Announcements</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h2>Welcome to Our Madrasa</h2>
+    <p>Providing Islamic education with excellence.</p>
+  </div>
+</section>
+
+<section class="cards container">
+  <div class="card">
+    <h3>Classes</h3>
+    <p>View all class details</p>
+  </div>
+  <div class="card">
+    <h3>Students</h3>
+    <p>Student information</p>
+  </div>
+  <div class="card">
+    <h3>Results</h3>
+    <p>Check exam results</p>
+  </div>
+  <div class="card">
+    <h3>Announcements</h3>
+    <p>Latest updates</p>
+  </div>
+</section>
+<ul id="leaderboard"></ul>
+<footer class="footer">
+  <p>© 2026 Madrasa. All rights reserved.</p>
+</footer>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+</script>
+</body>
+
+</html>
+
