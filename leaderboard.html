@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaderboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Fonts (Arabic + Malayalam) -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Noto+Sans+Malayalam&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <h1>Thanveerul Islam Rahmaniyya Madrasa</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="classes/class1.html">Classes</a>
+      <a href="students/class1-students.html">Students</a>
+      <a href="results/class1-results.html">Results</a>
+      <a href="leaderboard.html">Leaderboard</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Page Content -->
+<div class="container">
+
+  <h2>🏆 Leaderboard</h2>
+<button onclick="addTestData()">Add Test Data</button>
+  <!-- Malayalam Title -->
+  <h3 class="malayalam">മികച്ച വിദ്യാർത്ഥികൾ</h3>
+
+  <!-- Arabic Line -->
+  <p class="arabic">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</p>
+<button onclick="addTestData()">Add Test Data</button>
+  <!-- Leaderboard Table -->
+  <div class="card">
+    <table width="100%" id="leaderboardTable">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Firebase data will come here -->
+        <tr>
+          <td>1</td>
+          <td>Loading...</td>
+          <td>--</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>© 2026 Madrasa</p>
+</footer>
+
+<!-- ========================= -->
+<!-- Firebase Scripts (PASTE BELOW) -->
+
+<!-- ========================= -->
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+
+// Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCxKk67W6ue5RgSVJ0elM664kI2GyNQrj8",
+    authDomain: "rahmaniyya-madrasa.firebaseapp.com",
+    databaseURL: "https://rahmaniyya-madrasa-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "rahmaniyya-madrasa",
+    storageBucket: "rahmaniyya-madrasa.firebasestorage.app",
+    messagingSenderId: "591596525388",
+    appId: "1:591596525388:web:4afa93412b4a452277e1e9"
+  }
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// LOAD DATA FROM FIREBASE
+db.ref("leaderboard").on("value", (snapshot) => {
+  const data = snapshot.val();
+
+  const table = document.getElementById("leaderboardTable").getElementsByTagName("tbody")[0];
+  table.innerHTML = "";
+
+  if (!data) return;
+
+  const list = Object.values(data).sort((a,b)=>b.score-a.score);
+
+  list.forEach((student, index) => {
+    let row = table.insertRow();
+    row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${student.name}</td>
+      <td>${student.score}</td>
+    `;
+  });
+});
+<script>
+
+const firebaseConfig = { ... };
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+function addTestData() {
+  db.ref("leaderboard").push({
+    name: "Hafna",
+    score: 5f
+  });
+
+  db.ref("leaderboard").push({
+    name: "Zahra",
+    score: 4
+  });
+
+  db.ref("leaderboard").push({
+    name: "Nia",
+    score: 4
+  });
+
+  alert("Data added!");
+}
+
+// LOAD DATA
+db.ref("leaderboard").on("value", (snapshot) => {
+  ...
+});
+
+</script>
+</script>
+
+</body>
+</html>
